@@ -44,20 +44,15 @@ def telemetry(sid, data):
     image_array = np.asarray(image)
     
     ## ============  preprocess image  ============
+    img_x = 80 
+    img_y = 20
     
-    image_array = cv2.cvtColor(image_array, cv2.COLOR_BGR2GRAY)
-    
-    # mask
     image_array = image_array[60:140, 0:320]
-
-    print(image_array.shape)
+    #print(img.shape)
+    
     # reduce size
-    image_array = cv2.resize(image_array, (160, 40)) 
-    print(image_array.shape)
-
-   
-    # reshape
-    image_array  = np.reshape(image_array,[40, 160,1]) # reshape
+    #img = cv2.resize(img, (160, 40))
+    image_array = cv2.resize(image_array, (img_x, img_y))
     
     
     ## =============================================

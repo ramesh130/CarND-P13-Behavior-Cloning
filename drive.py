@@ -54,6 +54,9 @@ def telemetry(sid, data):
     #img = cv2.resize(img, (160, 40))
     image_array = cv2.resize(image_array, (img_x, img_y))
     
+    # normaliaze
+    image_array  = image_array.astype('float32')
+    image_array = image_array/255 - 0.5
     
     ## =============================================
 

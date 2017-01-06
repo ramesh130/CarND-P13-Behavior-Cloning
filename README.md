@@ -34,6 +34,16 @@ This project requires Python 3.5 and the following Python libraries installed:
 
 ### CNN Architecture
 
+The neural network contain 4 converoluation layer, followed by a flatterned layers, then followered by 4 fully connected layers. The last layer only contraines 1 node, so it produce the steering angle.
+
+Activation function: 
+Relu is used as the activation function, compare to softmax it is more computional efficient.
+
+Regulization:
+A dropout layer is added afte every convolution and fully connected layer. The layer elimate a percentage of the output value to help the algorithem learn a more robust model.
+
+The final parameters of the nuralnetwoark is 6861, it is a reasonal size compared with 30k data size.
+
     ____________________________________________________________________________________________________
     Layer (type)                     Output Shape          Param #     Connected to                     
     ====================================================================================================

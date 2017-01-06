@@ -119,5 +119,5 @@ Initially, I used a simple model CNN structure, with 2 convolution layers and 2 
 
 Then I increase the number of layers to 4 convolution layers and 5 fully connected layer. The model starts to learning. The running loss starts to decrease. The car starts to make reasonable responses when it’s driving. However, it still drives off the track very often. The problem is the validation error is still big, which indicate overfitting. I add dropout layer after every convolution and fully connected layers, to make the model more robust. The new model takes much epoch to learn (about 110 epochs), but the validation error decreases further. 
 
-In the result, the behavior is more smooth, most of the time the car in the middle of the road with a large margin. In a sharp corner. It drives to the edge of the track, but it immediate adjusts to keep it back to the track.
+In the final model, the vehicle behavior is more smooth. For most of the time the car drives in the middle of the road with a large margin. Only in one instance at a sharp corner, the car went to the edge of the track, but it immediate adjusts itself and went back to the center of the track.
 

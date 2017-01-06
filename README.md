@@ -26,9 +26,11 @@ This project requires Python 3.5 and the following Python libraries installed:
 
 ## Detail Description:
 ### Preprocess
-1. select region of interest 
-2. resize
-3. normalize
+1. select region of interest:This step excludes the less relevant area, such as the sky and trees and focuses on the marks on the road.
+
+2. Resize: to reduce the size of the image can reduce to reduce the memory and speed up the training process. The size of the cropped image is (80, 320) was to reduced to (20, 80). Still, 3 channel is the same.
+
+3. Normalize: the original value of the image ranges from 0 to 255, normalization the new from -0.5 to 0.5
 
 ### CNN Architecture
 
@@ -91,6 +93,8 @@ This project requires Python 3.5 and the following Python libraries installed:
     ____________________________________________________________________________________________________
 
 ### Data Generation
+
+320k image and steering angle pairs in the data. The preprocessing the size of the data size the training size is 1.2 Gb, can fit into memory.
 
 ### Training
 

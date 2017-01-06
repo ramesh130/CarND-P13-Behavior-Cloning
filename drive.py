@@ -25,12 +25,6 @@ prev_image_array = None
 @sio.on('telemetry')
 
 
-#def process_an_img(img):
-#    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # convert to grayscale    
-#    img = cv2.resize(img, (64, 32)) # reduce size
-#    img  = np.reshape(img,[32, 64,1]) # reshape
-#    return img
-
 def telemetry(sid, data):
     # The current steering angle of the car
     steering_angle = data["steering_angle"]
@@ -44,14 +38,13 @@ def telemetry(sid, data):
     image_array = np.asarray(image)
     
     ## ============  preprocess image  ============
-    img_x = 80 
-    img_y = 20
     
+    # select region of interesting
     image_array = image_array[60:140, 0:320]
-    #print(img.shape)
     
     # reduce size
-    #img = cv2.resize(img, (160, 40))
+    img_x = 80 # new width
+    img_y = 20 # new length
     image_array = cv2.resize(image_array, (img_x, img_y))
     
     # normaliaze

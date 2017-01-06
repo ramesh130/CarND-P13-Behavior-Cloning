@@ -94,9 +94,13 @@ This project requires Python 3.5 and the following Python libraries installed:
 
 ### Data Generation
 
-320k image and steering angle pairs in the data. The preprocessing the size of the data size the training size is 1.2 Gb, can fit into memory.
+The dataset contains 5 laps of the driving data. In 3 of the laps, the vehicle tries to stay in the center of the road. In the other 2 lap, it has many situations of recoveries. 320k image and steering angle pairs in the data. The preprocessing the size of the data size the training size is 1.2 Gb, can fit into memory.
+
+The dataset is shuffled. 30% of the data is chosen as validation set and 70% is chosen as the training set
 
 ### Training
+The training model 110 epoch. The first 50 epoch use large learning rate 0.001.The later 60 epoch use smaller learning rate 0.00001 to fine tune the model. The model and weight are saved for retraining.
+The final loss is about 0.053
 
 ### Reflection
 Initially, I used a simple model CNN structure, with 2 convolution layers and 2 fully connected layer. However, it is difficult for the model to learn anything useful. The result is a constant steering angle. In addition, even with more epochs,  the validation error not decreasing.

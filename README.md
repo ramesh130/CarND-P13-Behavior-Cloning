@@ -132,14 +132,14 @@ The parameters are tuned by observing the loss of validation set and the trainin
 I started with a simple network with 2 convolution layers and 2 fully connected layer. However, the result is a constant value, and the model is not learning. So, I gradually increase the number of layers to observe the change of the training and validation loss, and add dropout layers to prevent overfitting.
 
 
-### Reflection
+## Reflection
 Initially, I used a simple model CNN structure, with 2 convolution layers and 2 fully connected layer. However, it is difficult for the model to learn anything useful. The result is a constant steering angle. Also, even with more epochs, the validation error not decreasing.
 
 So I increase the number of layers to 4 convolution layers and 5 fully connected layer. The model starts to learning. The running loss starts to decrease. The car starts to make reasonable responses when it’s driving. However, it still drives off the track very often. The problem is the validation error is still big, which indicate overfitting. I add dropout layer after every convolution and fully connected layers, to make the model more robust. The new model takes much epoch to learn (about 50 epochs), but the validation error decreases further. And the model becomes more robust.
 
 In the final model, the vehicle behavior is more smooth. For most of the time, the car drives in the middle of the road with a large margin. If the car goes to the edge of the track, it immediate adjusted itself and went back to the center of the track.The final loss is 0.062, which is not very low. But the performance of the vehicle is very robust. When I plot the output steering angle, the results has more output maximum value (1) and minimum value (-1). I guess it adjusts the car more abrupt to keep it on the track.
 
-### Reference
+## Reference
 Bojarski, Mariusz, et al. "End to End Learning for Self-Driving Cars." arXiv preprint arXiv:1604.07316 (2016).
 
 

@@ -27,26 +27,34 @@ This project requires Python 3.5 and the following Python libraries installed:
 ## Detail Description:
 
 ### 1. Model Architecture Design
-- Overview: The model architecture is based on the Nvidia paper on end-to-end learning. In this paper, a CNN is implemented with 5 convolutional layers, followed by 1 flattened layers, and then by 3 fully connected layers. At the end of the network is a single neuron which generates the steering angle. My CNN follows the similar architecture, expect  It contains 4 convolutional layers and 4 fully connected layers.
+**Overview**
 
-- Reason for using CNN:
-1. The end-to-end learning problem is highly nonlinar problem, the deep neuro network can handle very complex problem.
-2. The convolutional network is suited for image data, it use shared weight to reduce the number of parameter in the model.
-3. The driving data from human driving the simulation, can be obtained easlier. large amount of data is require by CNN.
+The model architecture is based on the Nvidia paper on end-to-end learning. In this paper, a CNN is implemented with 5 convolutional layers, followed by 1 flattened layers, and then by 3 fully connected layers. At the end of the network is a single neuron which generates the steering angle. My CNN follows the similar architecture, expect  It contains 4 convolutional layers and 4 fully connected layers.
+
+** Reason for using CNN**
+
+- The end-to-end learning problem is highly nonlinar problem, the deep neuro network can handle very complex problem.
+- The convolutional network is suited for image data, it use shared weight to reduce the number of parameter in the model.
+- The driving data from human driving the simulation, can be obtained easlier. large amount of data is require by CNN.
 
 
 ### 2. Architecture Characteristics,
 
-- Number of layers
+** Number of layers**
+
 The neural network contains 4 convolutional layers, followed by a flattened layer, then followed by 4 fully connected layers. The last layer only contains 1 node, so it produces the steering angle.
 
-Determine the number of layers: I started with a simple network with 2 convolution layers and 2 fully connected layer. The result However, the result is constant value the model is not learning. Then gradually increase the number of layers, like the Nevid paper. The model start to learning. To further reduce the loss I add dropout layer after each layer to prevent overfitting.
+** Determine the number of layers**  
+
+I started with a simple network with 2 convolution layers and 2 fully connected layer. The result However, the result is constant value the model is not learning. Then gradually increase the number of layers, like the Nevid paper. The model start to learning. To further reduce the loss I add dropout layer after each layer to prevent overfitting.
 
 
-- Activation function: 
+** Activation function** 
+
 Relu is used as the activation function, compare to softmax it is more computationally efficient.
 
-- Regularization:
+** Regularization**
+
 A dropout layer is added after every convolution and fully connected layer. The layer eliminates a percentage of the output value to help the algorithm learn a more robust model.
 
 The final parameters of the neural network have totally 6861 parameters. It is a reasonable size compared to the amount of data.
@@ -94,11 +102,14 @@ The final parameters of the neural network have totally 6861 parameters. It is a
 
 ### 3. Data Preprocessing 
 
-- Data Generation: The dataset contains 5 laps of the driving data. In 3 of the laps, the vehicle tries to stay in the center of the road. In the other 2 lap, it has many situations of recoveries. 320k image and steering angle pairs in the data. The preprocessing the size of the data size the training size is 1.2 Gb, can fit into memory.
+** Data Generation **
+
+The dataset contains 5 laps of the driving data. In 3 of the laps, the vehicle tries to stay in the center of the road. In the other 2 lap, it has many situations of recoveries. 320k image and steering angle pairs in the data. The preprocessing the size of the data size the training size is 1.2 Gb, can fit into memory.
 
 The dataset is shuffled. 20% is reserved for the training set.  24 % of is chosen as validation set, and 56% is chosen as the training set.
 
-- Preprocess steps:
+** Preprocess steps **
+
 1. Select region of interest: this step excludes the less relevant area, such as the sky and trees and focuses on the marks on the road.
 
 2. Resize: to reduce the size of the image can reduce to reduce the memory and speed up the training process. The images still have 3 channels. The size of the cropped image is (80, 320, 3) was to reduced to (20, 80, 3).
@@ -108,14 +119,16 @@ The dataset is shuffled. 20% is reserved for the training set.  24 % of is chose
 
 ### 4. Model Training and hyperparameter tuning
 
-- Performance measurement:
+** Performance measurement **
+
 Least-min-sequare(LMS) error is choose as the performance measurement. Beasuese, the output steering angle is a continous number, and LMS can indicate the difference beteen the predicted value and the value from the data.
 
-- Training iterations:
+** Training iterations **
+
 The training of the model take 50 epoches. The first 30 epoches use larger learning rate (0.001). The model and weights are saved for further fine tuning. The later 20 epoches use smaller learning rate (0.00001). The loss in validation set is converged to is about 0.062.
 
 
-- Parameter tuning
+** Hyperparameter tuning **
 
 The paramter is tuning by observation the loss of validation set and the training set. If the loss of the validation set stop decrease and training set further decrease, it indicates the model is overtrained. A response is to add dropout layer to prevent overfittingand more possible more layer to increase the complexity of the model.
 I started with a simple network with 2 convolution layers and 2 fully connected layer. However, the result is constant value, the model does not learning. 

@@ -3,9 +3,11 @@
 # Project 3: Behavior Cloning
 
 ## Overview
-This project aims to train the car to drive itself in a simulation environment, with the images-steering-angle-pair data using a deep neural network. The video of the final result is shown in the following link: [YouTube](https://www.youtube.com/watch?v=JLVWC8iJfss)
+This project aims to train the car to drive itself in a simulation environment, with the images-steering-angle-pair data using a deep neural network. 
 
-## Dependencies
+Here's a [link to my video result](https://www.youtube.com/watch?v=JLVWC8iJfss)
+
+### Dependencies
 This project requires Python 3.5 and the following Python libraries installed:
 
 - numpy
@@ -18,11 +20,13 @@ This project requires Python 3.5 and the following Python libraries installed:
 - tensorflow
 - h5py
 
-## Files:
+### Files:
 - model.ipynb: the ipython notebook generates the CNN model. The detailed is described in the next section. 
 - drive.py: the python script predicts the steering angle from the image in the simulation in real time and sends the steering angle back to the simulation.
 - model.joson: the final model
 - model.h5: the weight of the final model
+
+---
 
 ## Detail Description:
 
